@@ -1,11 +1,20 @@
-import React, { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StatusBar } from "expo-status-bar";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import styled, { css } from "styled-components/native";
-import AtomContainer from "../components/atoms/AtomContainer";
-import AtomWrapper from "../components/atoms/AtomWrapper";
+import { ExploreStackParams } from "../../stack";
 import { TextSyle } from "../components/atoms/AtomText/style";
-// import MapView from "react-native-maps";
-import AtomImage from "../components/atoms/AtomImage";
+// import AtomImage from "../components/atoms/AtomImage";
+import AtomWrapper from "../components/atoms/AtomWrapper";
+
+const CustomStyles = css`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+`;
 
 const Save = styled.SafeAreaView`
   flex: 1;
@@ -36,61 +45,45 @@ const data = {
   longitude: -84.419853,
 };
 
-const PetPage: FC = () => {
+type navigationScreenProp = StackNavigationProp<ExploreStackParams>;
+export default function App() {
+  const navigation = useNavigation<navigationScreenProp>();
+
   return (
-    <AtomContainer>
+    <AtomWrapper customCSS={CustomStyles}>
+      <View
+        style={{
+          borderBottomEndRadius: 20,
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20,
+          borderBottomStartRadius: 20,
+        }}
+      ></View>
       <Save>
-        <AtomWrapper
-          backgroundColor="#167bd8"
-          borderRadius="0 0 50px 50px"
-          height="300px"
-          alignItems="center"
-          justifyContent="flex-end"
-        >
-          <AtomWrapper width="200px" height="200px" borderRadius="25px">
-            <AtomImage
-              customWidth="200px"
-              customHeight="200px"
-              customBorderRadius="25px"
-              url="https://www.petmd.com/sites/default/files/petmd-cat-happy-10.jpg"
-              source={0}
-            />
-            <AtomWrapper
-              alignItems="center"
-              backgroundColor="#00000069"
-              borderRadius="0 0 25px 25px"
-              padding="5px"
-              customCSS={css`
-                margin-top: -67px;
-                height: max-content;
-              `}
-            >
-              <TextSyle fontSize="25px" color="#ffffff">
-                Cariñosito
-              </TextSyle>
-              <TextSyle fontSize="18px" color="#E0F0FF">
-                Perro - Bulldog
-              </TextSyle>
-            </AtomWrapper>
-          </AtomWrapper>
+        <AtomWrapper>
           <AtomWrapper
             backgroundColor="#167bd8"
-            borderRadius="50%"
-            height="100px"
-            width="100px"
-            border="5px solid #ffffff"
+            height="300px"
             alignItems="center"
-            justifyContent="center"
-            customCSS={css`
-              margin-bottom: -50px;
-            `}
-          />
-        </AtomWrapper>
-        <AtomWrapper
-          customCSS={css`
-            padding: 10px;
-          `}
-        >
+            justifyContent="flex-end"
+            style={{
+              borderBottomEndRadius: 25,
+              borderBottomStartRadius: 25,
+            }}
+          >
+            <Image
+              style={{
+                width: 200,
+                height: 200,
+                borderRadius: 100,
+              }}
+              source={{
+                uri: "https://www.petmd.com/sites/default/files/petmd-cat-happy-10.jpg",
+              }}
+            />
+            <Text style={Styles.data}>{}</Text>
+            <Text style={Styles.data}>{}</Text>
+          </AtomWrapper>
           <AtomWrapper
             customCSS={css`
               flex-direction: row;
@@ -129,38 +122,32 @@ const PetPage: FC = () => {
               <Text style={Styles.data}>{data.createdAt}</Text>
             </AtomWrapper>
           </AtomWrapper>
-          <AtomWrapper
-            customCSS={css`
-              flex-direction: row;
-              justify-content: space-between;
-            `}
+          <Text>Pendejo Mentiroso</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("screen2")}
+            style={{
+              backgroundColor: "purple",
+              width: 30,
+              height: 30,
+              borderRadius: 10,
+              justifyContent: "center",
+            }}
           >
-            {/* <MapView
-              style={Styles.map}
-              initialRegion={{
-                latitude: data.latitude,
-                longitude: data.longitude,
-                latitudeDelta: 0.09,
-                longitudeDelta: 0.04,
+            <Text
+              style={{
+                fontSize: 20,
+                textAlign: "center",
+                color: "white",
               }}
-            /> */}
-
-            <AtomWrapper width="50%">
-              <Text style={Styles.label}>Direccion</Text>
-              <Text style={Styles.data}>{data.direction}</Text>
-              <Text style={Styles.label}>Ubicacion</Text>
-              <Text style={Styles.data}>{data.location}</Text>
-            </AtomWrapper>
-          </AtomWrapper>
-          <Text style={Styles.label}>Observaciones</Text>
-          <Text style={Styles.data}>{data.observations}</Text>
+            >
+              +
+            </Text>
+          </TouchableOpacity>
         </AtomWrapper>
       </Save>
-    </AtomContainer>
+    </AtomWrapper>
   );
-};
-
-export default PetPage;
+}
 
 const Styles = StyleSheet.create({
   container: {
@@ -173,13 +160,11 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     color: "#167BD8",
     fontWeight: "bold",
-    fontFamily: "Inter",
     marginTop: 15,
   },
   data: {
     fontSize: 16,
-    color: "#64707D",
-    fontFamily: "Inter",
+    color: "#ffffff",
   },
   map: {
     width: 150,

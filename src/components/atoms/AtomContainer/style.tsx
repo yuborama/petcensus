@@ -1,7 +1,11 @@
-import styled, { css } from "@emotion/native";
-import { AtomWrapperStyle } from "../AtomWrapper/types";
+import styled, { css } from "styled-components/native";
+import { AtomWrapperProps } from "../AtomWrapper/types";
 
-export const ContainerStyle = styled.View<AtomWrapperStyle>(
+
+const aaaa = css``
+
+
+export const ContainerStyle = styled.View<AtomWrapperProps>(
   (props) => css`
     flex: 1;
     display: flex;
@@ -14,6 +18,5 @@ export const ContainerStyle = styled.View<AtomWrapperStyle>(
     padding: ${props?.padding ?? 0};
     margin: ${props?.margin ?? 0};
     border: ${props?.border ?? "none"};
-    ${props?.customCSS}
   `
 );

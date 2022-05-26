@@ -1,6 +1,6 @@
-import { css } from "@emotion/native";
 import React, { FC } from "react";
 import { StyleSheet, Text } from "react-native";
+import { css } from "styled-components/native";
 import { ImageStyle } from "../../atoms/AtomImage/style";
 import { TextSyle } from "../../atoms/AtomText/style";
 import AtomWrapper from "../../atoms/AtomWrapper";
@@ -21,11 +21,13 @@ const MoleculeCardAnimal: FC<MoleculeCardAnimalType> = (props) => {
     <AtomWrapper
       customCSS={css`
         flex-direction: row;
-        height: max-content;
+        align-items: center;
+        justify-content: center;
         margin: 5px;
         padding: 5px;
         border: 1px solid #cdcdcd;
         border-radius: 25px;
+        width: 98%;
       `}
     >
       <AtomWrapper
@@ -39,11 +41,13 @@ const MoleculeCardAnimal: FC<MoleculeCardAnimalType> = (props) => {
         <ImageStyle
           customWidth="70px"
           customHeight="70px"
-          customBorderRadius="50%"
+          style={{
+            borderRadius: 45,
+          }}
           source={{ uri: url }}
         />
       </AtomWrapper>
-      <AtomWrapper width="80%" padding="0 0 0 10px">
+      <AtomWrapper width="80%">
         <Text style={Styles.name}>{name}</Text>
         <TextSyle style={Styles.race}>{race}</TextSyle>
         <TextSyle style={Styles.typeanimal}>{typeanimal}</TextSyle>
@@ -62,26 +66,21 @@ const Styles = StyleSheet.create({
   name: {
     fontSize: 20,
     color: "#167BD8",
-    fontFamily: "Inter",
   },
   race: {
     fontSize: 15,
     color: "#64707D",
-    fontFamily: "Inter",
   },
   typeanimal: {
     fontSize: 10,
     color: "#64707D",
-    fontFamily: "Inter",
   },
   dataOwner: {
     fontSize: 12,
     color: "#64707D",
-    fontFamily: "Inter",
   },
   location: {
     fontSize: 15,
     color: "#2E2E2E",
-    fontFamily: "Inter",
   },
 });

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import AtomWrapper from "../../atoms/AtomWrapper";
 import { StyleSheet, Text } from "react-native";
-import { css } from "@emotion/native";
+import { css } from "styled-components/native";
 interface MoleculeCardUserDetailType {
   name?: string;
   ccOwner?: string;
@@ -16,26 +16,25 @@ const MoleculeCardUserDetail: FC<MoleculeCardUserDetailType> = (props) => {
   return (
     <AtomWrapper
       customCSS={css`
-        height: max-content;
-        margin: 5px;
         padding: 10px;
-        border: 1px solid #cdcdcd;
         border-radius: 25px;
       `}
+      style={{
+        with: "100%",
+      }}
     >
       <Text style={Styles.label}>Nombre</Text>
       <Text style={Styles.data}>{name}</Text>
       <AtomWrapper
         customCSS={css`
           flex-direction: row;
-          width: max-content;
         `}
       >
-        <AtomWrapper>
+        <AtomWrapper width="50%">
           <Text style={Styles.label}>Documento</Text>
           <Text style={Styles.data}>{ccOwner}</Text>
         </AtomWrapper>
-        <AtomWrapper>
+        <AtomWrapper width="50%">
           <Text style={Styles.label}>Teléfono</Text>
           <Text style={Styles.data}>{tel}</Text>
         </AtomWrapper>
@@ -57,12 +56,10 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     color: "#167BD8",
     fontWeight: "bold",
-    fontFamily: "Inter",
     marginTop: 5,
   },
   data: {
     fontSize: 16,
     color: "#64707D",
-    fontFamily: "Inter",
   },
 });

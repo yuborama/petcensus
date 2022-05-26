@@ -1,4 +1,4 @@
-import styled, { css } from "@emotion/native";
+import styled, { css } from "styled-components/native";
 import { AtomImageType } from "./types";
 
 // export const ImageStyle = styled.Image<AtomImageType>(
@@ -29,6 +29,6 @@ export const ImageStyle = styled.Image<AtomImageType>`
   height: ${({ customHeight }) => customHeight ?? "100%"};
   padding: ${({ customPadding }) => customPadding ?? 0};
   margin: ${({ customMargin }) => customMargin ?? 0};
-  border: ${({ customBorder }) => customBorder ?? "none"};
+  ${({ customCSS }) => customCSS}
 `;
 // display: flex;

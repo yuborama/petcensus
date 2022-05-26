@@ -1,4 +1,7 @@
-import { ReactNativeStyle } from "@emotion/native";
+import { DefaultTheme } from "styled-components/native";
+import { FlattenSimpleInterpolation, ThemedCssFunction } from "styled-components";
+import { CWT } from "@types";
+
 import type { ImageProps } from "react-native";
 export type AtomImageType = {
   customBorderRadius?: string;
@@ -7,11 +10,7 @@ export type AtomImageType = {
   customHeight?: string;
   customBorder?: string;
   customMargin?: string;
-  customCSS?: ReactNativeStyle;
+  customCSS?: FlattenSimpleInterpolation;
 };
 
-export type AtomImageProps = ImageProps &
-  AtomImageType & {
-    url: string;
-    source?: ImageProps["source"];
-  };
+export type AtomImageProps = CWT<ImageProps, AtomImageType>;

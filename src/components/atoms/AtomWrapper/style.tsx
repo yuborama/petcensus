@@ -1,7 +1,7 @@
-import styled, { css } from "@emotion/native";
-import { AtomWrapperStyle } from "./types";
+import styled, { css } from "styled-components/native";
+import { AtomWrapperProps } from "./types";
 
-export const ViewStyle = styled.View<AtomWrapperStyle>(
+export const WrapperStyle = styled.View<AtomWrapperProps>(
   (props) => css`
     display: flex;
     justify-content: ${props?.justifyContent ?? "flex-start"};
@@ -9,7 +9,7 @@ export const ViewStyle = styled.View<AtomWrapperStyle>(
     background-color: ${props?.backgroundColor ?? "transparent"};
     border-radius: ${props?.borderRadius ?? 0};
     width: ${props?.width ?? "100%"};
-    height: ${props?.height ?? "max-content"};
+    height: ${props?.height ?? "auto"};
     padding: ${props?.padding ?? 0};
     margin: ${props?.margin ?? 0};
     border: ${props?.border ?? "none"};

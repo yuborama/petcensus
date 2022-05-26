@@ -1,6 +1,8 @@
-import { ReactNativeStyle } from "@emotion/native";
-import type { ViewProps } from "react-native";
-export type AtomWrapperStyle = {
+import { CWT } from "@types";
+import { ViewProps } from "react-native";
+import { FlattenSimpleInterpolation } from "styled-components";
+
+export type AtomWrapperTypes = {
   color?: string;
   backgroundColor?: string;
   borderRadius?: string;
@@ -17,7 +19,7 @@ export type AtomWrapperStyle = {
     | "space-between"
     | "space-around"
     | "space-evenly";
-  customCSS?: ReactNativeStyle;
+  customCSS?: FlattenSimpleInterpolation;
 };
 
-export type AtomWrapperProps = ViewProps & AtomWrapperStyle;
+export type AtomWrapperProps = CWT<ViewProps, AtomWrapperTypes>;
