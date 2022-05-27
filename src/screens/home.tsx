@@ -1,6 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { Text } from "react-native";
 import { css } from "styled-components/native";
+import { ExploreStackParams, navigationScreenProp } from "../../stack";
 import AtomWrapper from "../components/atoms/AtomWrapper";
 import MoleculeCardTask from "../components/molecules/MoleculeCardTask";
 import MoleculeCardUserHome from "../components/molecules/moleculeCardUserHome";
@@ -10,21 +12,25 @@ const tasks = [
     id: 1,
     text: "Mascotas",
     image: require("../../assets/pet.png"),
+    navigate: "listOwner",
   },
   {
     id: 2,
     text: "Dueños",
     image: require("../../assets/check.png"),
+    navigate: "listOwner",
   },
   {
     id: 3,
     text: "Encuestadores",
     image: require("../../assets/detail.png"),
+    navigate: "listPollster",
   },
   {
     id: 4,
     text: "Administradores",
     image: require("../../assets/list.png"),
+    navigate: "listAdmin",
   },
 ];
 
@@ -39,10 +45,12 @@ const container = css`
 `;
 
 export default function App() {
+  const navigation = useNavigation<navigationScreenProp>();
   return (
     <AtomWrapper
       customCSS={css`
         padding: 30px;
+        padding-top: 90px;
       `}
     >
       <MoleculeCardUserHome
@@ -62,7 +70,9 @@ export default function App() {
           <MoleculeCardTask
             key={item.id}
             {...item}
-            onPress={() => console.log("hola")}
+            onPress={() =>
+              navigation.navigate(item.navigate as keyof ExploreStackParams)
+            }
           />
         ))}
       </AtomWrapper>

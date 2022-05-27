@@ -4,7 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import styled, { css } from "styled-components/native";
-import { ExploreStackParams } from "../../stack";
+import { ExploreStackParams, navigationScreenProp } from "../../stack";
 import { TextSyle } from "../components/atoms/AtomText/style";
 // import AtomImage from "../components/atoms/AtomImage";
 import AtomWrapper from "../components/atoms/AtomWrapper";
@@ -45,7 +45,7 @@ const data = {
   longitude: -84.419853,
 };
 
-type navigationScreenProp = StackNavigationProp<ExploreStackParams>;
+
 export default function App() {
   const navigation = useNavigation<navigationScreenProp>();
 
